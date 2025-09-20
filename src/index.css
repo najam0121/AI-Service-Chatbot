@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ServiceHive AI Chatbot Design System - AI-themed colors and animations */
+
+@layer base {
+  :root {
+    /* ServiceHive AI Brand Colors */
+    --background: 206, 68%, 82%; /* Very light blue-gray */
+    --foreground: 211 75% 15%; /* Dark blue for text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 211 75% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 211 75% 15%;
+
+    /* AI-Blue Primary Theme */
+    --primary: 217 91% 60%; /* #3B82F6 - Main AI blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 221 83% 53%; /* #1E40AF - Darker blue */
+    
+    /* Chat-specific colors */
+    --chat-bot-bg: 217 91% 95%; /* Light blue for bot messages */
+    --chat-bot-text: 221 83% 25%; /* Dark blue text for bot */
+    --chat-user-bg: 217 91% 60%; /* Primary blue for user messages */
+    --chat-user-text: 0 0% 100%; /* White text for user */
+    
+    /* Secondary colors */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 211 75% 15%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 217 91% 95%;
+    --accent-foreground: 221 83% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 96%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* AI-themed gradients */
+    --gradient-ai-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(221 83% 53%));
+    --gradient-ai-subtle: linear-gradient(180deg, hsl(217 91% 98%), hsl(220 14% 96%));
+    --gradient-ai-glow: linear-gradient(135deg, hsl(217 91% 60% / 0.1), hsl(221 83% 53% / 0.05));
+    
+    /* Animation variables */
+    --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --animation-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 150ms var(--animation-smooth);
+    --transition-normal: 300ms var(--animation-smooth);
+    
+    /* Shadows */
+    --shadow-chat-message: 0 1px 3px hsl(217 91% 60% / 0.1);
+    --shadow-floating: 0 4px 12px hsl(217 91% 60% / 0.2);
+    --shadow-elevated: 0 8px 24px hsl(217 91% 60% / 0.12);
+  }
+
+  /* DARK MODE REMOVED - original dark mode variables removed here */
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* AI Chatbot Custom Animations and Utilities */
+@layer components {
+  /* Message animations */
+  .animate-message-in {
+    animation: messageSlideIn 0.3s var(--animation-smooth);
+  }
+  
+  .animate-typing-dots {
+    animation: typingPulse 1.4s infinite;
+  }
+  
+  .animate-breathing {
+    animation: breathing 3s infinite;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.2s var(--animation-bounce);
+  }
+  
+  /* Button variants */
+  .btn-ai-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark text-primary-foreground px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  
+  .btn-ai-secondary {
+    @apply border-2 border-primary text-primary bg-transparent px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  
+  .btn-ai-tertiary {
+    @apply text-primary bg-accent px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:scale-105 active:scale-95;
+  }
+  
+  /* Chat message styles */
+  .chat-message-bot {
+    @apply bg-chat-bot-bg text-chat-bot-text max-w-[80%] p-4 rounded-2xl rounded-bl-sm shadow-sm;
+  }
+  
+  .chat-message-user {
+    @apply bg-chat-user-bg text-chat-user-text max-w-[80%] p-4 rounded-2xl rounded-br-sm shadow-sm ml-auto;
+  }
+  
+  /* Quick action floating buttons */
+  .quick-action-btn {
+    @apply bg-white text-primary border border-primary/20 px-4 py-2 rounded-full font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 hover:bg-primary hover:text-primary-foreground;
+  }
+  
+  /* Input field styles */
+  .chat-input {
+    @apply w-full bg-white border border-input rounded-2xl px-4 py-3 pr-20 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none;
+  }
+  
+  /* Avatar styles */
+  .bot-avatar {
+    @apply w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-primary-foreground shadow-md;
+  }
+  
+  /* Status indicators */
+  .status-online {
+    @apply w-3 h-3 bg-green-500 rounded-full animate-pulse;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-ai-gradient {
+    background: var(--gradient-ai-primary);
+  }
+  
+  .bg-ai-subtle {
+    background: var(--gradient-ai-subtle);
+  }
+  
+  .bg-ai-glow {
+    background: var(--gradient-ai-glow);
+  }
+}
+
+/* Keyframe animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes typingPulse {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
